@@ -173,5 +173,3 @@ Mentoring
 ## 👨‍💻 Author
 
 **Dzulfi Khoiriyah Azzahra**
-
-UPN "Veteran" Yogyakarta
