@@ -169,44 +169,9 @@ Mentoring
 
 ---
 
-## 🚀 Cara Menjalankan Aplikasi
-
-### 1. Clone Repository
-
-```bash
-git clone https://github.com/USERNAME/REPOSITORY.git
-```
-
-### 2. Masuk ke Folder Project
-
-```bash
-cd Mentoring
-```
-
-### 3. Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Jalankan Streamlit
-
-```bash
-streamlit run app.py
-```
-
-Aplikasi akan berjalan pada:
-
-```
-http://localhost:8501
-```
-
----
 
 ## 👨‍💻 Author
 
 **Dzulfi Khoiriyah Azzahra**
-
-Fresh Graduate S1 Sistem Informasi
 
 UPN "Veteran" Yogyakarta
