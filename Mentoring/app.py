@@ -1,9 +1,13 @@
 import streamlit as st
 import joblib
+from pathlib import Path
+
+# Folder tempat app.py berada
+BASE_DIR = Path(__file__).resolve().parent
 
 # Load model
-model = joblib.load("model/logistic_regression.pkl")
-vectorizer = joblib.load("model/tfidf_vectorizer.pkl")
+model = joblib.load(BASE_DIR / "model" / "logistic_regression.pkl")
+vectorizer = joblib.load(BASE_DIR / "model" / "tfidf_vectorizer.pkl")
 
 st.set_page_config(
     page_title="Sentiment Analysis",
