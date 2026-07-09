@@ -7,7 +7,7 @@ Proyek ini bertujuan untuk menganalisis sentimen masyarakat terhadap **Program M
 Analisis dilakukan menggunakan model **IndoBERT** untuk proses pelabelan sentimen, kemudian dibandingkan performa beberapa algoritma Machine Learning untuk melakukan klasifikasi sentimen.
 
 
-link deployment : 
+link deployment : https://dmvjgtewsynivpksyymkri.streamlit.app/
 
 ---
 
