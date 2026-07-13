@@ -35,9 +35,6 @@ st.divider()
 # ===========================
 # Informasi Dataset
 # ===========================
-# ===========================
-# Informasi Dataset
-# ===========================
 st.subheader("📁 Informasi Dataset")
 
 col1, col2 = st.columns(2)
@@ -56,11 +53,6 @@ with col2:
 - Positive
 - Neutral
 - Negative
-
-**🤖 Model**
-- Logistic Regression
-- TF-IDF
-""")
 
 st.markdown("### 🎥 Video yang Dianalisis")
 
