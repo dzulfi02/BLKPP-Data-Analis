@@ -35,29 +35,44 @@ st.divider()
 # ===========================
 # Informasi Dataset
 # ===========================
+# ===========================
+# Informasi Dataset
+# ===========================
 st.subheader("📁 Informasi Dataset")
 
 col1, col2 = st.columns(2)
 
 with col1:
     st.info("""
-**Jumlah Data**
-- 6.000 komentar
-
-**Sumber Data**
-- YouTube
+**📊 Dataset**
+- Jumlah Data : 6.000 komentar
+- Sumber Data : Komentar YouTube
+- Jumlah Video : 2 video
 """)
 
 with col2:
     st.info("""
-**Label Sentimen**
+**🏷️ Label Sentimen**
 - Positive
 - Neutral
 - Negative
+
+**🤖 Model**
+- Logistic Regression
+- TF-IDF
+""")
+
+st.markdown("### 🎥 Video yang Dianalisis")
+
+st.markdown("""
+**1. TAK ADA MAKAN SIANG GRATIS: Kelindan Kepentingan di Balik Program MBG**  
+**Channel:** Watchdoc Documentary
+
+**2. Kroni Prabowo dalam Proyek Makan Bergizi Gratis (MBG): Bocor Alus Politik**  
+**Channel:** Tempodotco
 """)
 
 st.divider()
-
 # ===========================
 # Contoh Input
 # ===========================
