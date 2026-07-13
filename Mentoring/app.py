@@ -53,6 +53,7 @@ with col2:
 - Positive
 - Neutral
 - Negative
+""")
 
 st.markdown("### 🎥 Video yang Dianalisis")
 
