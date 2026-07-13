@@ -35,21 +35,18 @@ st.divider()
 # ===========================
 # Informasi Dataset
 # ===========================
-with st.expander("📁 Informasi Dataset"):
-    st.write("""
-    **Jumlah Data:** 6.000 komentar
+st.subheader("📁 Informasi Dataset")
 
-    **Sumber:** Komentar YouTube
+col1, col2 = st.columns(2)
 
-    **Video yang dianalisis:**
-    - TAK ADA MAKAN SIANG GRATIS: Kelindan Kepentingan di Balik Program MBG (Watchdoc Documentary)
-    - Kroni Prabowo dalam Proyek Makan Bergizi Gratis (MBG): Bocor Alus Politik (Tempodotco)
+with col1:
+    st.info("""
+**Jumlah Data**
+- 6.000 komentar
 
-    **Label Sentimen:**
-    - Positive
-    - Neutral
-    - Negative
-    """)
+**Sumber Data**
+- YouTube
+""")
 
 with col2:
     st.info("""
