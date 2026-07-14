@@ -201,7 +201,7 @@ st.markdown(
 
 @st.cache_data
 def load_data():
-    df = pd.read_excel("data_harga_ayam.xlsx")
+    df = pd.read_excel("Dataset/data_harga_ayam.xlsx")
     df["Tanggal"] = pd.to_datetime(df["Tanggal"], format="%d/ %m/ %Y")
     df["Harga"] = (df["Harga"].astype(str).str.replace(",", "").replace("-", pd.NA).astype(float))
     df.rename(columns={"Harga": "Harga (Rp)"}, inplace=True)
