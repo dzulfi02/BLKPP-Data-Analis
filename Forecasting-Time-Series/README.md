@@ -2,7 +2,7 @@
 
 Proyek ini bertujuan untuk memprediksi harga daging ayam nasional menggunakan metode **Time Series Forecasting**. Beberapa model forecasting dibandingkan untuk memperoleh model dengan performa terbaik berdasarkan metrik evaluasi **MAE**, **RMSE**, dan **MAPE**. Hasil terbaik kemudian diimplementasikan dalam sebuah aplikasi interaktif menggunakan **Streamlit**.
 
-link demo : []
+link demo : [https://4je82smkdfyydznwsgftdg.streamlit.app/]
 
 ---
 
