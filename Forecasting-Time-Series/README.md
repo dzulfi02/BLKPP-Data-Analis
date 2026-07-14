@@ -163,6 +163,3 @@ Semakin kecil nilai ketiga metrik tersebut, semakin baik performa model.
 ## 👤 Author
 
 **Dzulfi Khoiriyah Azzahra**
-
-- GitHub : https://github.com/dzulfi02
-- LinkedIn : www.linkedin.com/in/dzulfi-khoiriyah-azzahra
