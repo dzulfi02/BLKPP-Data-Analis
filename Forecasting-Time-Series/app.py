@@ -199,9 +199,37 @@ st.markdown(
 # DATA LOADING
 # ==========================
 
+import os
+import glob
+
+DATA_FILENAME = "data_harga_ayam.xlsx"
+
+def find_data_file():
+    """Cari file dataset di beberapa lokasi umum relatif terhadap app.py,
+    lalu fallback ke pencarian rekursif di seluruh folder proyek."""
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+
+    candidate_paths = [
+        os.path.join(base_dir, DATA_FILENAME),
+        os.path.join(base_dir, "Dataset", DATA_FILENAME),
+        os.path.join(base_dir, "dataset", DATA_FILENAME),
+        os.path.join(base_dir, "data", DATA_FILENAME),
+    ]
+    for path in candidate_paths:
+        if os.path.exists(path):
+            return path
+
+    # Fallback: cari rekursif (case-insensitive) di seluruh folder proyek
+    for path in glob.glob(os.path.join(base_dir, "**", "*.xlsx"), recursive=True):
+        if os.path.basename(path).lower() == DATA_FILENAME.lower():
+            return path
+
+    return None
+
+
 @st.cache_data
-def load_data():
-    df = pd.read_excel("Dataset/data_harga_ayam.xlsx")
+def load_data(path):
+    df = pd.read_excel(path)
     df["Tanggal"] = pd.to_datetime(df["Tanggal"], format="%d/ %m/ %Y")
     df["Harga"] = (df["Harga"].astype(str).str.replace(",", "").replace("-", pd.NA).astype(float))
     df.rename(columns={"Harga": "Harga (Rp)"}, inplace=True)
@@ -210,7 +238,26 @@ def load_data():
     df["Harga (Rp)"] = df["Harga (Rp)"].interpolate()
     return df
 
-df = load_data()
+
+data_path = find_data_file()
+
+if data_path is None:
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    semua_file = []
+    for root, _, files in os.walk(base_dir):
+        for f in files:
+            semua_file.append(os.path.relpath(os.path.join(root, f), base_dir))
+
+    st.error(
+        f"❌ File **{DATA_FILENAME}** tidak ditemukan di dalam repo/folder project.\n\n"
+        "Pastikan file dataset sudah di-*push* ke GitHub dan namanya persis sama "
+        "(huruf besar/kecil ikut diperiksa)."
+    )
+    with st.expander("📁 Lihat daftar file yang terdeteksi di folder project"):
+        st.write(semua_file if semua_file else "Tidak ada file yang terbaca.")
+    st.stop()
+
+df = load_data(data_path)
 
 # ==========================
 # HERO HEADER
