@@ -91,10 +91,10 @@ Dashboard menyediakan beberapa fitur utama, yaitu:
 Forecasting-Time-Series/
 │
 ├── app.py
-├── Holt-Winter.py
 ├── requirements.txt
 ├── README.md
-├── dataset/
+├── Notebook
+├── Dataset/
    └── harga_ayam.csv
 
 ```
