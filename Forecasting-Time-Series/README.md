@@ -24,7 +24,7 @@ Harga daging ayam merupakan salah satu komoditas pangan strategis di Indonesia y
 ## 📂 Dataset
 
 - **Nama Dataset** : Harga Daging Ayam Nasional
-- **Sumber Data** : Panel Harga Pangan Nasional – Badan Pangan Nasional (National Food Agency)
+- **Sumber Data** : Pusat Informasi Harga Pangan Strategis (PIHPS) Nasional
 - **Periode Data** : Juli 2022 – Juli 2026
 
 Dataset berisi data harga harian daging ayam yang digunakan sebagai data historis untuk proses forecasting.
@@ -95,10 +95,8 @@ Forecasting-Time-Series/
 ├── requirements.txt
 ├── README.md
 ├── dataset/
-│   └── harga_ayam.csv
-│
-└── images/
-    └── dashboard.png
+   └── harga_ayam.csv
+
 ```
 
 ---
