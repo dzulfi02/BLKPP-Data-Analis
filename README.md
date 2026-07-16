@@ -1,6 +1,8 @@
-# 📊 BLKPP Data Analyst Portfolio
+# 📊 Data Analyst Portfolio
 
-Welcome to my **Data Analyst Portfolio Repository**. This repository contains projects, case studies, and practical exercises completed during the **Data Analyst Training Program**. The projects demonstrate the application of data analytics, machine learning, SQL, data visualization, and dashboard development to solve real-world business problems.
+Welcome to my Data Analyst Portfolio repository.
+
+This repository contains projects, case studies, dashboards, SQL exercises, and machine learning implementations completed during my Data Analyst learning journey. Each project demonstrates the application of data analytics techniques to solve real-world business problems using Python, SQL, visualization tools, and machine learning models.
 
 ---
 
@@ -8,120 +10,179 @@ Welcome to my **Data Analyst Portfolio Repository**. This repository contains pr
 
 Hi, I'm **Dzulfi Khoiriyah Azzahra**.
 
-I am an Information Systems graduate with an interest in Data Analytics, Machine Learning, Business Intelligence, and Data Visualization. This repository serves as a collection of my learning journey and portfolio throughout the Data Analyst training.
+An Information Systems graduate with interests in:
+
+- Data Analytics
+- Business Intelligence
+- Machine Learning
+- Data Visualization
+- Process Automation
+
+This repository serves as a collection of projects and practical implementations developed during training, self-learning, and portfolio development.
 
 ---
 
-## 🛠️ Skills
+## 🛠️ Tools & Technologies
 
+### Programming & Query Languages
 - Python
 - SQL
+
+### Data Analysis
 - Pandas
 - NumPy
 - Scikit-Learn
 - XGBoost
-- Streamlit
+
+### Visualization
+- Matplotlib
+- Seaborn
+- Plotly
 - Power BI
-- Tableau
-- Microsoft Excel
-- Data Cleaning
-- Exploratory Data Analysis (EDA)
-- Machine Learning
-- Data Visualization
+
+### Database
+- PostgreSQL
+- DBeaver
+
+### Deployment
+- Streamlit
+- GitHub
 
 ---
 
-## 📁 Repository Structure
+# 🚀 Projects
 
-```
-BLKPP-Data-Analis/
-│
-├── Project-1-Retail/
-│   ├── Dataset
-│   ├── Notebook
-│   ├── Model
-│   ├── Streamlit App
-│   └── README.md
-│
-├── Mentoring/
-│   ├── Notebook
-│   ├── Dataset
-│   └── Practice Files
-│
-├── SQL/
-│   ├── Queries
-│   └── Exercises
-│
-└── README.md
-```
+## 🛒 Project 1 – Retail Sales Prediction
 
----
+**Problem**
 
-## 🚀 Projects
-
-### 🛒 Project 1 – Retail Sales Prediction
-
-**Objective**
-
-Predict daily retail sales using Machine Learning based on store information, promotions, holidays, and customer-related features.
+Predict daily store sales based on store information, promotions, holidays, and customer-related features.
 
 **Tech Stack**
 
 - Python
 - Pandas
-- Scikit-Learn
 - XGBoost
 - Streamlit
 - Plotly
 
-**Highlights**
+**Key Skills**
 
 - Data Cleaning
-- Exploratory Data Analysis
 - Feature Engineering
 - Regression Modeling
 - Model Evaluation
-- Streamlit Deployment
+- Deployment
+
+📂 Folder:
+`Project-1-Retail`
 
 ---
 
-## 📈 Learning Outcomes
+## 🛍️ Project 2 – Olist E-Commerce Analysis
 
-Throughout this training, I gained experience in:
+**Problem**
 
-- Data preprocessing and cleaning
+Analyze e-commerce transactions to identify sales trends, customer behavior, product performance, and delivery efficiency.
+
+**Tech Stack**
+
+- Python
+- PostgreSQL
+- SQL
+- Power BI
+- DBeaver
+
+**Key Skills**
+
+- Data Wrangling
+- SQL Analysis
+- Data Validation
+- Dashboard Development
+- Business Insight Generation
+
+📂 Folder:
+`Project-2-Ecommerce-Olist`
+
+---
+
+## 📞 Project 3 – Telco Customer Churn Prediction
+
+**Problem**
+
+Predict customer churn to help telecommunications companies improve customer retention strategies.
+
+**Tech Stack**
+
+- Python
+- Scikit-Learn
+- Streamlit
+
+**Key Skills**
+
+- Classification Modeling
+- Feature Engineering
+- EDA
+- Model Evaluation
+- Deployment
+
+📂 Folder:
+`Project-3-Telco`
+
+---
+
+## 📚 Learning Materials & Practice
+
+### SQL Practice
+Collection of SQL exercises, queries, joins, aggregations, window functions, and business case studies.
+
+### Mentoring
+Contains notebooks, datasets, and learning materials used during mentoring sessions and practical exercises.
+
+---
+
+## 🎯 Skills Demonstrated
+
+### Data Analysis
+- Data Cleaning
+- Data Wrangling
 - Exploratory Data Analysis (EDA)
-- SQL querying
-- Feature engineering
-- Machine learning model development
-- Model evaluation
-- Dashboard development
-- Data storytelling
-- Web application deployment using Streamlit
+- Data Validation
+- Data Visualization
+
+### SQL
+- Joins
+- Subqueries
+- CTE
+- Window Functions
+- Aggregations
+
+### Machine Learning
+- Regression
+- Classification
+- Model Evaluation
+- Feature Engineering
+
+### Business Intelligence
+- Dashboard Development
+- KPI Monitoring
+- Data Storytelling
 
 ---
 
-## 📚 Tools & Technologies
+## 📈 Portfolio Highlights
 
-| Category | Tools |
-|----------|-------|
-| Programming | Python, SQL |
-| Libraries | Pandas, NumPy, Scikit-Learn, XGBoost |
-| Visualization | Matplotlib, Plotly |
-| BI Tools | Power BI, Tableau |
-| Deployment | Streamlit |
-| Version Control | Git & GitHub |
+✔ End-to-End Data Analytics Projects
 
----
+✔ SQL-Based Business Analysis
 
-## 🎯 Repository Purpose
+✔ Interactive Dashboards
 
-This repository is intended to:
+✔ Machine Learning Models
 
-- Document my learning journey
-- Showcase data analytics projects
-- Demonstrate practical machine learning implementation
-- Build a professional portfolio for future opportunities
+✔ Streamlit Deployment
+
+✔ Business Insight Reporting
 
 ---
 
@@ -129,10 +190,12 @@ This repository is intended to:
 
 **Dzulfi Khoiriyah Azzahra**
 
-- GitHub: https://github.com/dzulfi02
+📧 Email: dzulfikazzahral@gmail.com
+
+🐙 GitHub: https://github.com/dzulfi02
 
 ---
 
-## ⭐ Thank You
+## ⭐ Notes
 
-Thank you for visiting my portfolio repository. Feedback and suggestions are always welcome!
+This repository is continuously updated as new projects and learning outcomes are completed.
