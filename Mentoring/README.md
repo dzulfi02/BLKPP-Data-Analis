@@ -1,94 +1,93 @@
-# 📊 Analisis Sentimen Komentar YouTube Menggunakan IndoBERT dan Machine Learning
+# 📊 YouTube Sentiment Analysis Using IndoBERT and Machine Learning
 
-## 📌 Deskripsi Proyek
+## 📌 Project Overview
 
-Proyek ini bertujuan untuk menganalisis sentimen masyarakat terhadap **Program Makan Bergizi Gratis (MBG)** berdasarkan komentar yang diperoleh dari platform YouTube.
+This project aims to analyze public sentiment toward the **Free Nutritious Meal Program (Makan Bergizi Gratis - MBG)** based on comments collected from YouTube videos.
 
-Analisis dilakukan menggunakan model **IndoBERT** untuk proses pelabelan sentimen, kemudian dibandingkan performa beberapa algoritma Machine Learning untuk melakukan klasifikasi sentimen.
+Sentiment labels were automatically generated using the **IndoBERT** model, and several Machine Learning algorithms were evaluated to classify the sentiment of user comments. The best-performing model was then deployed as an interactive web application using **Streamlit**.
 
-
-🔗 Live Demo: [https://dmvjgtewsynivpksyymkri.streamlit.app/]
+🌐 **Live Demo:** https://dmvjgtewsynivpksyymkri.streamlit.app/
 
 ---
 
-## 🎯 Tujuan
+## 🎯 Objectives
 
-- Mengumpulkan komentar dari video YouTube yang membahas Program Makan Bergizi Gratis (MBG).
-- Melakukan preprocessing terhadap data teks.
-- Memberikan label sentimen menggunakan model IndoBERT.
-- Melakukan analisis eksploratif terhadap hasil sentimen.
-- Membangun model klasifikasi sentimen menggunakan Machine Learning.
-- Melakukan deployment model menggunakan Streamlit.
+- Collect comments from YouTube videos discussing the Free Nutritious Meal (MBG) Program.
+- Perform text preprocessing on the collected comments.
+- Generate sentiment labels using the IndoBERT model.
+- Conduct exploratory data analysis (EDA) on the labeled dataset.
+- Build and evaluate sentiment classification models using Machine Learning.
+- Deploy the best-performing model as a Streamlit web application.
 
 ---
 
 ## 📂 Dataset
 
-Sumber data diperoleh dari komentar YouTube menggunakan library:
+The dataset was collected from YouTube comments using the following library:
 
-- youtube-comment-downloader
+- `youtube-comment-downloader`
 
-Jumlah data yang digunakan sekitar **6.000 komentar**.
+The dataset contains approximately **6,000 YouTube comments**.
 
 ---
 
-## 🔄 Alur Pengerjaan
+## 🔄 Project Workflow
 
-```
-Scraping Data
-      │
-      ▼
+```text
+YouTube Comment Scraping
+          │
+          ▼
 Data Understanding (EDA)
-      │
-      ▼
-Data Preprocessing
-      │
-      ▼
-Pelabelan Sentimen (IndoBERT)
-      │
-      ▼
+          │
+          ▼
+Text Preprocessing
+          │
+          ▼
+Sentiment Labeling (IndoBERT)
+          │
+          ▼
 Exploratory Data Analysis (EDA)
-      │
-      ▼
+          │
+          ▼
 Feature Engineering (TF-IDF)
-      │
-      ▼
-Machine Learning
-      │
+          │
+          ▼
+Machine Learning Models
+          │
       ├── Naive Bayes
       └── Logistic Regression
-      │
-      ▼
-Evaluasi Model
-      │
-      ▼
-Deployment Streamlit
+          │
+          ▼
+Model Evaluation
+          │
+          ▼
+Streamlit Deployment
 ```
 
 ---
 
-## 🧹 Tahapan Preprocessing
+## 🧹 Text Preprocessing
 
-Tahapan preprocessing yang dilakukan meliputi:
+The preprocessing pipeline includes:
 
 - Case Folding
-- Cleaning Text
-- Remove URL
-- Remove Mention
-- Remove Hashtag
-- Remove Emoji
-- Remove Number
-- Remove Punctuation
+- Text Cleaning
+- URL Removal
+- Mention Removal
+- Hashtag Removal
+- Emoji Removal
+- Number Removal
+- Punctuation Removal
 - Tokenization
-- Normalisasi Kata Slang
+- Slang Word Normalization
 - Stopword Removal
-- Stemming Bahasa Indonesia menggunakan Sastrawi
+- Indonesian Stemming using **Sastrawi**
 
 ---
 
-## 🤖 Pelabelan Sentimen
+## 🤖 Sentiment Labeling
 
-Pelabelan sentimen dilakukan menggunakan model **IndoBERT** sehingga setiap komentar memiliki tiga kategori sentimen, yaitu:
+Sentiment labels were generated using the **IndoBERT** model, resulting in three sentiment categories:
 
 - 😊 Positive
 - 😐 Neutral
@@ -98,49 +97,49 @@ Pelabelan sentimen dilakukan menggunakan model **IndoBERT** sehingga setiap kome
 
 ## ⚙️ Feature Engineering
 
-Representasi teks dilakukan menggunakan:
+Text data was transformed into numerical features using:
 
-- TF-IDF Vectorizer
+- **TF-IDF Vectorizer**
 
 ---
 
-## 🧠 Algoritma Machine Learning
+## 🧠 Machine Learning Models
 
-Model yang digunakan pada penelitian ini adalah:
+The following classification algorithms were evaluated:
 
 - Multinomial Naive Bayes
 - Logistic Regression
 
 ---
 
-## 📈 Evaluasi Model
+## 📈 Model Evaluation
 
-Evaluasi dilakukan menggunakan beberapa metrik berikut:
+The models were evaluated using the following metrics:
 
 - Accuracy
 - Precision
 - Recall
-- F1 Score
+- F1-Score
 - Confusion Matrix
 
-### Hasil Evaluasi
+### Evaluation Results
 
 | Model | Accuracy |
-|--------|----------|
-| Logistic Regression | **0.69** |
+|--------|---------:|
+| **Logistic Regression** | **0.69** |
 | Naive Bayes | 0.66 |
 
-Berdasarkan hasil evaluasi tersebut, **Logistic Regression** dipilih sebagai model terbaik dan digunakan pada tahap deployment.
+Based on the evaluation results, **Logistic Regression** achieved the highest accuracy and was selected as the final model for deployment.
 
 ---
 
-## 🛠️ Teknologi yang Digunakan
+## 🛠️ Technologies Used
 
 - Python
 - Google Colab
 - Pandas
 - NumPy
-- Scikit-Learn
+- Scikit-learn
 - Transformers
 - IndoBERT
 - Sastrawi
@@ -150,20 +149,20 @@ Berdasarkan hasil evaluasi tersebut, **Logistic Regression** dipilih sebagai mod
 
 ---
 
-## 📁 Struktur Folder
+## 📁 Project Structure
 
-```
-Mentoring
+```text
+Mentoring/
 │
-├── Dataset
-│      └── youtube_comment.csv
+├── Dataset/
+│   └── youtube_comment.csv
 │
-├── Model
-│      ├── logistic_regression.pkl
-│      └── tfidf.pkl
+├── Model/
+│   ├── logistic_regression.pkl
+│   └── tfidf.pkl
 │
-├── Notebook
-│      └── Project_Sentiment_Mentoring.ipynb
+├── Notebook/
+│   └── Project_Sentiment_Mentoring.ipynb
 │
 ├── app.py
 ├── requirements.txt
@@ -172,7 +171,49 @@ Mentoring
 
 ---
 
+## 🚀 Getting Started
 
-## 👨‍💻 Author
+### Clone the repository
+
+```bash
+git clone https://github.com/dzulfi02/BLKPP-Data-Analis.git
+```
+
+### Navigate to the project directory
+
+```bash
+cd BLKPP-Data-Analis/Mentoring
+```
+
+### Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### Run the Streamlit application
+
+```bash
+streamlit run app.py
+```
+
+---
+
+## 📱 Application Features
+
+The Streamlit application provides several interactive features:
+
+- View dataset summary
+- Display sentiment distribution
+- Explore word clouds for each sentiment class
+- Predict the sentiment of custom Indonesian text
+- Compare machine learning model performance
+- Visualize evaluation metrics
+
+---
+
+## 👨‍💻 Dzulfi Khoiriyah Azzahra
 
 **Dzulfi Khoiriyah Azzahra**
+
+- GitHub: https://github.com/dzulfi02
