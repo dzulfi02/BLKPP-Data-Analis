@@ -2,7 +2,7 @@
 
 Web application for predicting retail store sales using a Machine Learning Regression model, built with **Streamlit** and supported by business insights from exploratory data analysis.
 
-🔗 **Live Demo:** [https://sales-prediction-app-fzbunyz5s82j2qem7wb6rr.streamlit.app/]
+🔗 **Live Demo:** [https://sales-prediction-app-fzbunyz5s82j2qem7wb6rr.streamlit.app/](https://btnlqumjmskowyugsw4zwk.streamlit.app/]
 
 ---
 
