@@ -44,9 +44,12 @@ st.markdown("""
 # LOAD MODEL
 # ===================================================
 
+from pathlib import Path
+
 @st.cache_resource
 def load_model():
-    return joblib.load("Model-Regresi-XGb/model_xgb.pkl")
+    model_path = Path(__file__).parent / "Model-Regresi-XGb" / "model_xgb.pkl"
+    return joblib.load(model_path)
 
 try:
     loaded = load_model()
