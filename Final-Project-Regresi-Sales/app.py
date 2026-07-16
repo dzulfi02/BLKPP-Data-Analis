@@ -46,7 +46,7 @@ st.markdown("""
 
 @st.cache_resource
 def load_model():
-    return joblib.load("Model-Regresi-XGb\model_xgb.pkl")
+    return joblib.load("Model-Regresi-XGb/model_xgb.pkl")
 
 try:
     loaded = load_model()
