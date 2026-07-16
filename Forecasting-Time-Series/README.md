@@ -1,53 +1,53 @@
-# 🐔 Forecasting Harga Daging Ayam Nasional Menggunakan Time Series
+# 🐔 National Chicken Meat Price Forecasting Using Time Series Analysis
 
-Proyek ini bertujuan untuk memprediksi harga daging ayam nasional menggunakan metode **Time Series Forecasting**. Beberapa model forecasting dibandingkan untuk memperoleh model dengan performa terbaik berdasarkan metrik evaluasi **MAE**, **RMSE**, dan **MAPE**. Hasil terbaik kemudian diimplementasikan dalam sebuah aplikasi interaktif menggunakan **Streamlit**.
+This project aims to forecast **national chicken meat prices in Indonesia** using **Time Series Forecasting** techniques. Several forecasting models were evaluated and compared to identify the best-performing model based on **MAE**, **RMSE**, and **MAPE** evaluation metrics. The selected model was then deployed as an interactive web application using **Streamlit**.
 
-link demo : [https://4je82smkdfyydznwsgftdg.streamlit.app/]
-
----
-
-## 📌 Latar Belakang
-
-Harga daging ayam merupakan salah satu komoditas pangan strategis di Indonesia yang mengalami fluktuasi akibat berbagai faktor, seperti permintaan pasar, musim, distribusi, dan kondisi ekonomi. Prediksi harga pada periode mendatang dapat membantu pelaku usaha maupun masyarakat dalam melakukan perencanaan.
+🌐 **Live Demo:** https://4je82smkdfyydznwsgftdg.streamlit.app/
 
 ---
 
-## 🎯 Tujuan
+## 📌 Background
 
-- Melakukan analisis data harga daging ayam nasional.
-- Membandingkan beberapa metode forecasting time series.
-- Memilih model terbaik berdasarkan nilai evaluasi.
-- Membangun aplikasi forecasting berbasis Streamlit.
+Chicken meat is one of Indonesia's most important food commodities, and its price frequently fluctuates due to various factors such as market demand, seasonal trends, distribution, and economic conditions. Accurate price forecasting can help businesses, policymakers, and consumers make better planning and informed decisions.
+
+---
+
+## 🎯 Objectives
+
+- Analyze historical national chicken meat price data.
+- Compare multiple time series forecasting models.
+- Select the best-performing model based on evaluation metrics.
+- Develop an interactive forecasting application using Streamlit.
 
 ---
 
 ## 📂 Dataset
 
-- **Nama Dataset** : Harga Daging Ayam Nasional
-- **Sumber Data** : Pusat Informasi Harga Pangan Strategis (PIHPS) Nasional
-- **Periode Data** : Juli 2022 – Juli 2026
+- **Dataset:** National Chicken Meat Prices
+- **Source:** National Strategic Food Price Information Center (PIHPS)
+- **Period:** July 2022 – July 2026
 
-Dataset berisi data harga harian daging ayam yang digunakan sebagai data historis untuk proses forecasting.
+The dataset contains daily chicken meat prices used as historical data for the forecasting process.
 
 ---
 
-## 🛠️ Teknologi yang Digunakan
+## 🛠️ Technologies Used
 
 - Python
 - Pandas
 - NumPy
 - Statsmodels
 - Prophet
+- Scikit-learn
 - Matplotlib
 - Plotly
 - Streamlit
-- Scikit-Learn
 
 ---
 
-## 📈 Metode Forecasting
+## 📈 Forecasting Models
 
-Model yang dibandingkan pada penelitian ini yaitu:
+The following forecasting models were evaluated and compared:
 
 - ARIMA
 - SARIMA
@@ -56,7 +56,7 @@ Model yang dibandingkan pada penelitian ini yaitu:
 
 ---
 
-## 📊 Hasil Evaluasi
+## 📊 Model Evaluation
 
 | Model | MAE | RMSE | MAPE (%) |
 |--------|-------:|-------:|-------:|
@@ -65,27 +65,27 @@ Model yang dibandingkan pada penelitian ini yaitu:
 | Prophet | 1666.01 | 1993.54 | 4.26 |
 | **Holt-Winters** | **1589.87** | **1851.21** | **3.97** |
 
-### 🏆 Model Terbaik
+### 🏆 Best Model
 
-Model **Holt-Winters Exponential Smoothing** dipilih sebagai model terbaik karena memiliki nilai **MAE**, **RMSE**, dan **MAPE** paling rendah dibandingkan model lainnya.
-
----
-
-## 📷 Dashboard Streamlit
-
-Dashboard menyediakan beberapa fitur utama, yaitu:
-
-- Menampilkan ringkasan dataset
-- Menampilkan model terbaik
-- Visualisasi data historis
-- Visualisasi hasil forecasting
-- Pemilihan horizon forecasting (7, 14, dan 30 hari)
-- Perbandingan performa model
-- Download hasil forecasting dalam format CSV
+Among the evaluated models, **Holt-Winters Exponential Smoothing** achieved the best performance, producing the lowest **MAE**, **RMSE**, and **MAPE** values. Therefore, it was selected as the final forecasting model for deployment.
 
 ---
 
-## 📁 Struktur Project
+## 📷 Streamlit Dashboard
+
+The application provides several interactive features, including:
+
+- Dataset overview
+- Best model summary
+- Historical price visualization
+- Forecast visualization
+- Forecast horizon selection (7, 14, and 30 days)
+- Model performance comparison
+- CSV download for forecasting results
+
+---
+
+## 📁 Project Structure
 
 ```text
 Forecasting-Time-Series/
@@ -93,35 +93,34 @@ Forecasting-Time-Series/
 ├── app.py
 ├── requirements.txt
 ├── README.md
-├── Notebook
-├── Dataset/
-   └── harga_ayam.csv
-
+├── Notebook/
+└── Dataset/
+    └── harga_ayam.csv
 ```
 
 ---
 
-## ▶️ Menjalankan Project
+## ▶️ Getting Started
 
-Clone repository
+### Clone the repository
 
 ```bash
 git clone https://github.com/dzulfi02/BLKPP-Data-Analis.git
 ```
 
-Masuk ke folder project
+### Navigate to the project directory
 
 ```bash
 cd BLKPP-Data-Analis/Forecasting-Time-Series
 ```
 
-Install dependency
+### Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Jalankan Streamlit
+### Run the Streamlit application
 
 ```bash
 streamlit run app.py
@@ -129,35 +128,37 @@ streamlit run app.py
 
 ---
 
-## 📌 Hasil Forecast
+## 📌 Forecast Output
 
-Aplikasi memungkinkan pengguna memilih horizon prediksi:
+Users can select one of the available forecasting horizons:
 
-- 7 Hari
-- 14 Hari
-- 30 Hari
+- 7 Days
+- 14 Days
+- 30 Days
 
-Kemudian aplikasi akan menampilkan:
+The application displays:
 
-- Grafik historis
-- Grafik forecasting
-- Nilai prediksi
-- Tabel hasil forecasting
+- Historical price chart
+- Forecast chart
+- Predicted values
+- Forecast results table
 
 ---
 
-## 📚 Metrik Evaluasi
+## 📚 Evaluation Metrics
 
-Model dievaluasi menggunakan:
+The forecasting models were evaluated using the following metrics:
 
 - **MAE (Mean Absolute Error)**
 - **RMSE (Root Mean Squared Error)**
 - **MAPE (Mean Absolute Percentage Error)**
 
-Semakin kecil nilai ketiga metrik tersebut, semakin baik performa model.
+Lower values indicate better forecasting performance.
 
 ---
 
-## 👤 Author
+## 👤 Dzulfi Khoiriyah Azzahra
 
 **Dzulfi Khoiriyah Azzahra**
+
+- GitHub: https://github.com/dzulfi02
