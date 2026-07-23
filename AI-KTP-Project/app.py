@@ -177,28 +177,124 @@ def init_database():
 
     cursor = conn.cursor()
 
+
+    # Kolom wajib minimal: ID, Nama, Nomor Dokumen, Jenis Dokumen,
+    # Tanggal Upload, Status Validasi. Kolom tambahan (tempat_tgl_lahir,
+    # jenis_kelamin, alamat, agama, pekerjaan) disimpan agar detail hasil
+    # OCR tetap lengkap dan bisa ditelusuri.
     cursor.execute("""
-    CREATE TABLE IF NOT EXISTS documents (
+    CREATE TABLE IF NOT EXISTS ktp_data (
 
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-
         nama TEXT,
-
         nomor_dokumen TEXT,
-
         jenis_dokumen TEXT,
-
-        tanggal_upload TEXT,
-
+        tanggal_upload TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         status_validasi TEXT,
-
-        data_ocr TEXT
+        tempat_tgl_lahir TEXT,
+        jenis_kelamin TEXT,
+        alamat TEXT,
+        agama TEXT,
+        pekerjaan TEXT
 
     )
     """)
 
+
     conn.commit()
     conn.close()
+
+
+
+def save_database(data, jenis_dokumen, status_validasi):
+
+    conn = sqlite3.connect(
+        "ktp_database.db"
+    )
+
+    cursor = conn.cursor()
+
+
+    cursor.execute("""
+
+    INSERT INTO ktp_data
+    (
+    nama,
+    nomor_dokumen,
+    jenis_dokumen,
+    status_validasi,
+    tempat_tgl_lahir,
+    jenis_kelamin,
+    alamat,
+    agama,
+    pekerjaan
+    )
+
+    VALUES (?,?,?,?,?,?,?,?,?)
+
+    """,
+
+    (
+
+    data.get("nama",""),
+    data.get("nik",""),
+    jenis_dokumen,
+    status_validasi,
+    data.get("tempat_tgl_lahir",""),
+    data.get("jenis_kelamin",""),
+    data.get("alamat",""),
+    data.get("agama",""),
+    data.get("pekerjaan","")
+
+    ))
+
+
+    conn.commit()
+    conn.close()
+
+
+
+def read_database():
+
+    conn = sqlite3.connect(
+        "ktp_database.db"
+    )
+
+
+    df = pd.read_sql_query(
+
+        """
+        SELECT
+            id,
+            nama,
+            nomor_dokumen,
+            jenis_dokumen,
+            tanggal_upload,
+            status_validasi,
+            tempat_tgl_lahir,
+            jenis_kelamin,
+            alamat,
+            agama,
+            pekerjaan
+        FROM ktp_data
+        ORDER BY id DESC
+        """,
+
+        conn
+
+    )
+
+
+    conn.close()
+
+    return df
+
+
+
+init_database()
+
+
+
 # =====================================
 # IMAGE ENCODE
 # =====================================
@@ -447,6 +543,11 @@ def render_badges(validation_results):
     st.markdown(html, unsafe_allow_html=True)
 
 
+def overall_status(validation_results):
+    """Status validasi ringkas untuk disimpan ke kolom database."""
+    return "Valid" if all(is_valid for _, is_valid in validation_results) else "Tidak Valid"
+
+
 
 # =====================================
 # HERO HEADER
@@ -471,7 +572,7 @@ with st.sidebar:
 
     menu = st.radio(
         "Menu",
-        ["📤 Upload KTP", "🗄️ Database"],
+        ["🏠 Home", "📤 Upload KTP", "🗄️ Database"],
         label_visibility="collapsed"
     )
 
@@ -488,10 +589,62 @@ with st.sidebar:
 
 
 # =====================================
+# HOME PAGE
+# =====================================
+
+if menu == "🏠 Home":
+
+    st.markdown('<div class="section-card">', unsafe_allow_html=True)
+    st.subheader("👋 Tentang Aplikasi")
+    st.markdown("""
+**AI KTP OCR Dashboard** adalah aplikasi berbasis AI Vision untuk membantu
+mengklasifikasikan dan mengekstrak data dari gambar KTP (Kartu Tanda Penduduk)
+Indonesia secara otomatis. Cukup upload foto KTP, aplikasi akan:
+
+1. **Mengklasifikasikan** apakah gambar tersebut benar merupakan KTP Indonesia.
+2. **Melakukan OCR** untuk mengekstrak data seperti NIK, nama, alamat, dan informasi lainnya.
+3. **Memvalidasi** kelengkapan & format data hasil OCR.
+4. **Menyimpan** hasilnya secara otomatis ke dalam database.
+""")
+    st.markdown('</div>', unsafe_allow_html=True)
+
+    col_a, col_b = st.columns(2, gap="large")
+
+    with col_a:
+        st.markdown('<div class="section-card">', unsafe_allow_html=True)
+        st.subheader("🤖 Informasi Model AI")
+        st.markdown("""
+| Komponen | Detail |
+|---|---|
+| **Model** | `openai/gpt-4o-mini` |
+| **Provider** | OpenRouter |
+| **Kemampuan** | Vision (image understanding) + text generation |
+| **Fungsi 1** | Klasifikasi dokumen (KTP / bukan KTP) |
+| **Fungsi 2** | OCR — ekstraksi field data KTP ke format JSON |
+""")
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    with col_b:
+        st.markdown('<div class="section-card">', unsafe_allow_html=True)
+        st.subheader("🗂️ Struktur Data Tersimpan")
+        st.markdown("""
+Setiap dokumen yang berhasil diproses disimpan ke database dengan kolom:
+
+- **ID** — nomor urut data
+- **Nama** — nama pemilik dokumen
+- **Nomor Dokumen** — NIK
+- **Jenis Dokumen** — jenis dokumen yang terdeteksi (KTP)
+- **Tanggal Upload** — waktu data disimpan
+- **Status Validasi** — Valid / Tidak Valid
+""")
+        st.markdown('</div>', unsafe_allow_html=True)
+
+
+# =====================================
 # UPLOAD PAGE
 # =====================================
 
-if menu == "📤 Upload KTP":
+elif menu == "📤 Upload KTP":
 
     col_left, col_right = st.columns([1, 1.2], gap="large")
 
@@ -552,12 +705,20 @@ if menu == "📤 Upload KTP":
                 st.dataframe(df, use_container_width=True, hide_index=True)
                 st.markdown('</div>', unsafe_allow_html=True)
 
+                validation_results = validate_data(data)
+                status_validasi = overall_status(validation_results)
+
                 st.markdown('<div class="section-card">', unsafe_allow_html=True)
                 st.subheader("🔍 Validasi Data")
-                render_badges(validate_data(data))
+                render_badges(validation_results)
+                st.markdown(
+                    f'<span class="{"badge-ok" if status_validasi == "Valid" else "badge-bad"}">'
+                    f'Status Validasi: {status_validasi}</span>',
+                    unsafe_allow_html=True
+                )
                 st.markdown('</div>', unsafe_allow_html=True)
 
-                save_database(data)
+                save_database(data, jenis_dokumen="KTP", status_validasi=status_validasi)
                 st.success("💾 Data berhasil disimpan ke database")
 
                 csv = df.to_csv(index=False)
@@ -584,15 +745,15 @@ else:
     df_database = read_database()
 
     total_records = len(df_database)
-    valid_nik = int((df_database["nik"].astype(str).str.len() == 16).sum()) if total_records else 0
-    unique_gender = df_database["jenis_kelamin"].nunique() if total_records else 0
-    last_entry = df_database["created_at"].iloc[0] if total_records else "-"
+    valid_count = int((df_database["status_validasi"] == "Valid").sum()) if total_records else 0
+    invalid_count = total_records - valid_count if total_records else 0
+    last_entry = df_database["tanggal_upload"].iloc[0] if total_records else "-"
 
     m1, m2, m3, m4 = st.columns(4)
     for col, value, label in zip(
         [m1, m2, m3, m4],
-        [total_records, valid_nik, unique_gender, last_entry],
-        ["Total Data KTP", "NIK Valid (16 digit)", "Variasi Jenis Kelamin", "Entri Terakhir"]
+        [total_records, valid_count, invalid_count, last_entry],
+        ["Total Data Tersimpan", "Status Valid", "Status Tidak Valid", "Upload Terakhir"]
     ):
         with col:
             st.markdown(f"""
@@ -608,11 +769,11 @@ else:
     st.subheader("🗄️ Database KTP")
 
     if total_records:
-        search = st.text_input("🔎 Cari berdasarkan nama atau NIK", "")
+        search = st.text_input("🔎 Cari berdasarkan nama atau nomor dokumen", "")
         if search:
             mask = (
                 df_database["nama"].astype(str).str.contains(search, case=False, na=False)
-                | df_database["nik"].astype(str).str.contains(search, case=False, na=False)
+                | df_database["nomor_dokumen"].astype(str).str.contains(search, case=False, na=False)
             )
             df_display = df_database[mask]
         else:
