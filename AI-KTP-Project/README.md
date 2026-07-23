@@ -7,6 +7,7 @@ AI KTP OCR is an AI-based document processing application designed to automatica
 This application uses **AI Vision technology** to perform document classification and information extraction from KTP images.
 
 Link Demo : [https://hd5wggxufgmwqhmntjsiv7.streamlit.app/]
+
 ---
 
 # 🎯 Project Objectives
