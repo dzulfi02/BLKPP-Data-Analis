@@ -205,9 +205,17 @@ def init_database():
         status_validasi TEXT,
         tempat_tgl_lahir TEXT,
         jenis_kelamin TEXT,
+        golongan_darah TEXT,
         alamat TEXT,
+        rt TEXT,
+        rw TEXT,
+        kelurahan TEXT,
+        kecamatan TEXT,
         agama TEXT,
-        pekerjaan TEXT
+        status_perkawinan TEXT,
+        pekerjaan TEXT,
+        kewarganegaraan TEXT,
+        berlaku_hingga TEXT
     )
     """)
 
@@ -223,8 +231,10 @@ def save_database(data, jenis_dokumen, status_validasi):
     cursor.execute("""
     INSERT INTO ktp_data
     (nama, nomor_dokumen, jenis_dokumen, status_validasi,
-     tempat_tgl_lahir, jenis_kelamin, alamat, agama, pekerjaan)
-    VALUES (?,?,?,?,?,?,?,?,?)
+     tempat_tgl_lahir, jenis_kelamin, golongan_darah, alamat,
+     rt, rw, kelurahan, kecamatan, agama, status_perkawinan,
+     pekerjaan, kewarganegaraan, berlaku_hingga)
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
     """,
     (
         data.get("nama", ""),
@@ -233,9 +243,17 @@ def save_database(data, jenis_dokumen, status_validasi):
         status_validasi,
         data.get("tempat_tgl_lahir", ""),
         data.get("jenis_kelamin", ""),
+        data.get("golongan_darah", ""),
         data.get("alamat", ""),
+        data.get("rt", ""),
+        data.get("rw", ""),
+        data.get("kelurahan", ""),
+        data.get("kecamatan", ""),
         data.get("agama", ""),
-        data.get("pekerjaan", "")
+        data.get("status_perkawinan", ""),
+        data.get("pekerjaan", ""),
+        data.get("kewarganegaraan", ""),
+        data.get("berlaku_hingga", "")
     ))
 
     conn.commit()
@@ -249,7 +267,9 @@ def read_database():
     df = pd.read_sql_query("""
         SELECT id, nama, nomor_dokumen, jenis_dokumen, tanggal_upload,
                status_validasi, tempat_tgl_lahir, jenis_kelamin,
-               alamat, agama, pekerjaan
+               golongan_darah, alamat, rt, rw, kelurahan, kecamatan,
+               agama, status_perkawinan, pekerjaan, kewarganegaraan,
+               berlaku_hingga
         FROM ktp_data
         ORDER BY id DESC
     """, conn)
