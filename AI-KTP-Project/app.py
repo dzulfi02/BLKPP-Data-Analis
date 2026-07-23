@@ -220,6 +220,39 @@ def init_database():
     """)
 
     conn.commit()
+
+    # Migrasi otomatis: jika tabel dibuat oleh versi aplikasi sebelumnya
+    # (skema lama tanpa sebagian kolom), tambahkan kolom yang belum ada
+    # tanpa menghapus data yang sudah tersimpan.
+    required_columns = {
+        "nama": "TEXT",
+        "nomor_dokumen": "TEXT",
+        "jenis_dokumen": "TEXT",
+        "tanggal_upload": "TIMESTAMP",
+        "status_validasi": "TEXT",
+        "tempat_tgl_lahir": "TEXT",
+        "jenis_kelamin": "TEXT",
+        "golongan_darah": "TEXT",
+        "alamat": "TEXT",
+        "rt": "TEXT",
+        "rw": "TEXT",
+        "kelurahan": "TEXT",
+        "kecamatan": "TEXT",
+        "agama": "TEXT",
+        "status_perkawinan": "TEXT",
+        "pekerjaan": "TEXT",
+        "kewarganegaraan": "TEXT",
+        "berlaku_hingga": "TEXT",
+    }
+
+    cursor.execute("PRAGMA table_info(ktp_data)")
+    existing_columns = {row[1] for row in cursor.fetchall()}
+
+    for col_name, col_type in required_columns.items():
+        if col_name not in existing_columns:
+            cursor.execute(f"ALTER TABLE ktp_data ADD COLUMN {col_name} {col_type}")
+
+    conn.commit()
     conn.close()
 
 
@@ -809,7 +842,12 @@ elif menu == "📤 Upload Image":
 
 else:
 
-    df_database = read_database()
+    try:
+        df_database = read_database()
+    except Exception as e:
+        st.error(f"⚠️ Gagal membaca database: {e}")
+        st.info("Coba hapus file `ktp_database.db` lama lalu jalankan ulang aplikasi jika masalah berlanjut.")
+        st.stop()
 
     total_records = len(df_database)
     valid_count = int((df_database["status_validasi"] == "VALID").sum()) if total_records else 0
