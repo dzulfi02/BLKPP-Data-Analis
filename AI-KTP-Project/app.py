@@ -177,103 +177,28 @@ def init_database():
 
     cursor = conn.cursor()
 
-
     cursor.execute("""
-    CREATE TABLE IF NOT EXISTS ktp_data (
+    CREATE TABLE IF NOT EXISTS documents (
 
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nik TEXT,
+
         nama TEXT,
-        tempat_tgl_lahir TEXT,
-        jenis_kelamin TEXT,
-        alamat TEXT,
-        agama TEXT,
-        pekerjaan TEXT,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+        nomor_dokumen TEXT,
+
+        jenis_dokumen TEXT,
+
+        tanggal_upload TEXT,
+
+        status_validasi TEXT,
+
+        data_ocr TEXT
 
     )
     """)
 
-
     conn.commit()
     conn.close()
-
-
-
-def save_database(data):
-
-    conn = sqlite3.connect(
-        "ktp_database.db"
-    )
-
-    cursor = conn.cursor()
-
-
-    cursor.execute("""
-
-    INSERT INTO ktp_data
-    (
-    nik,
-    nama,
-    tempat_tgl_lahir,
-    jenis_kelamin,
-    alamat,
-    agama,
-    pekerjaan
-    )
-
-    VALUES (?,?,?,?,?,?,?)
-
-    """,
-
-    (
-
-    data.get("nik",""),
-    data.get("nama",""),
-    data.get("tempat_tgl_lahir",""),
-    data.get("jenis_kelamin",""),
-    data.get("alamat",""),
-    data.get("agama",""),
-    data.get("pekerjaan","")
-
-    ))
-
-
-    conn.commit()
-    conn.close()
-
-
-
-def read_database():
-
-    conn = sqlite3.connect(
-        "ktp_database.db"
-    )
-
-
-    df = pd.read_sql_query(
-
-        """
-        SELECT *
-        FROM ktp_data
-        ORDER BY id DESC
-        """,
-
-        conn
-
-    )
-
-
-    conn.close()
-
-    return df
-
-
-
-init_database()
-
-
-
 # =====================================
 # IMAGE ENCODE
 # =====================================
