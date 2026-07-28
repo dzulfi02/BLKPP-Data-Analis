@@ -114,6 +114,27 @@ st.markdown("""
     .feature-card h4 { margin-bottom: 0.3rem; }
     .feature-card p { color: rgba(49, 51, 63, 0.65); font-size: 0.9rem; margin: 0; }
 
+    /* Tombol "Buka" di bawah kartu fitur — dibuat nempel & senada (khusus 4 kartu Home) */
+    [class*="st-key-feature_card_"] {
+        margin-top: -0.9rem;
+    }
+    [class*="st-key-feature_card_"] button {
+        border: 1px solid rgba(106, 92, 255, 0.25) !important;
+        border-top: none !important;
+        border-radius: 0 0 14px 14px !important;
+        background: linear-gradient(135deg, #6a5cff08, #b06bff08) !important;
+        color: #6a5cff !important;
+        font-size: 0.82rem !important;
+        font-weight: 600 !important;
+        padding: 0.35rem 0 !important;
+        width: 100%;
+    }
+    [class*="st-key-feature_card_"] button:hover {
+        background: linear-gradient(135deg, #6a5cff18, #b06bff18) !important;
+        border-color: rgba(106, 92, 255, 0.4) !important;
+        color: #5443e0 !important;
+    }
+
     /* Badge skor */
     .score-badge {
         display: inline-block;
@@ -216,6 +237,26 @@ def render_feedback_section(result: dict):
 
 
 # =====================================
+# Navigasi (session_state biar bisa diklik dari kartu fitur)
+# =====================================
+MENU_OPTIONS = [
+    "🏠 Home",
+    "✍️ Writing Evaluation",
+    "🎤 Speaking Evaluation",
+    "📜 History"
+]
+
+if "active_menu" not in st.session_state:
+    st.session_state.active_menu = MENU_OPTIONS[0]
+
+
+def go_to(target_menu: str):
+    """Pindah halaman secara programatik (dipanggil dari tombol/kartu fitur)."""
+    st.session_state.active_menu = target_menu
+    st.rerun()
+
+
+# =====================================
 # Sidebar
 # =====================================
 with st.sidebar:
@@ -223,16 +264,16 @@ with st.sidebar:
     st.caption("Evaluasi Writing & Speaking berbasis AI")
     st.divider()
 
-    menu = st.radio(
+    selected_menu = st.radio(
         "Pilih Menu",
-        [
-            "🏠 Home",
-            "✍️ Writing Evaluation",
-            "🎤 Speaking Evaluation",
-            "📜 History"
-        ],
+        MENU_OPTIONS,
+        index=MENU_OPTIONS.index(st.session_state.active_menu),
         label_visibility="collapsed"
     )
+    if selected_menu != st.session_state.active_menu:
+        st.session_state.active_menu = selected_menu
+
+    menu = st.session_state.active_menu
 
     st.divider()
     st.caption("⚙️ Provider: **OpenRouter**")
@@ -272,12 +313,12 @@ if menu == "🏠 Home":
 
     c1, c2, c3, c4 = st.columns(4)
     features = [
-        ("✍️", "Writing Evaluation", "Analisis grammar, vocabulary, dan saran perbaikan tulisan."),
-        ("🎤", "Speaking Evaluation", "Transkripsi otomatis + evaluasi kemampuan berbicara."),
-        ("📜", "History", "Rekam jejak seluruh hasil evaluasi kamu."),
-        ("📊", "Export CSV", "Unduh riwayat evaluasi untuk dianalisis lebih lanjut."),
+        ("✍️", "Writing Evaluation", "Analisis grammar, vocabulary, dan saran perbaikan tulisan.", "✍️ Writing Evaluation"),
+        ("🎤", "Speaking Evaluation", "Transkripsi otomatis + evaluasi kemampuan berbicara.", "🎤 Speaking Evaluation"),
+        ("📜", "History", "Rekam jejak seluruh hasil evaluasi kamu.", "📜 History"),
+        ("📊", "Export CSV", "Unduh riwayat evaluasi untuk dianalisis lebih lanjut.", "📜 History"),
     ]
-    for col, (icon, title, desc) in zip([c1, c2, c3, c4], features):
+    for i, (col, (icon, title, desc, target)) in enumerate(zip([c1, c2, c3, c4], features)):
         with col:
             st.markdown(
                 f"""
@@ -289,6 +330,8 @@ if menu == "🏠 Home":
                 """,
                 unsafe_allow_html=True
             )
+            if st.button("Buka →", key=f"feature_card_{i}", use_container_width=True):
+                go_to(target)
 
     st.markdown("")
     with st.container(border=True):
