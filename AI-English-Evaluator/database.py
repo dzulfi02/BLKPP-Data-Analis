@@ -5,7 +5,7 @@ DATABASE_NAME = "database/history.db"
 
 
 def create_database():
-    conn = sqlite3.connect(DATABASE_NAME)
+    conn = sqlite3.connect("history.db")
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -24,7 +24,7 @@ def create_database():
 
 
 def save_result(input_text, evaluation_type, overall_score, result):
-    conn = sqlite3.connect(DATABASE_NAME)
+    conn = sqlite3.connect("history.db")
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -47,7 +47,7 @@ def save_result(input_text, evaluation_type, overall_score, result):
 
 
 def get_history():
-    conn = sqlite3.connect(DATABASE_NAME)
+    conn = sqlite3.connect("history.db")
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -68,7 +68,7 @@ def get_history():
 
 def get_history():
 
-    conn = sqlite3.connect(DATABASE_NAME)
+    conn = sqlite3.connect("history.db")
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -88,7 +88,7 @@ def get_history():
     return rows
 def export_history():
 
-    conn = sqlite3.connect(DATABASE_NAME)
+    conn = sqlite3.connect("history.db")
 
     df = pd.read_sql_query(
         "SELECT * FROM evaluations",
