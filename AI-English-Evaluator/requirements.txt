@@ -64,3 +64,7 @@ urllib3==2.7.0
 uvicorn==0.50.2
 watchdog==6.0.0
 websockets==16.0
+streamlit
+pandas
+numpy
+SpeechRecognition
