@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import os
 from datetime import datetime
 
 from writing import evaluate_writing
@@ -418,15 +419,13 @@ elif menu == "🎤 Speaking Evaluation":
 
         st.audio(uploaded_file)
 
-        import os
-        
         audio_dir = os.path.join(os.path.dirname(__file__), "audio")
         os.makedirs(audio_dir, exist_ok=True)
         
         audio_path = os.path.join(audio_dir, "temp.wav")
         
         with open(audio_path, "wb") as f:
-            f.write(audio_bytes)
+            f.write(uploaded_file.getbuffer())
 
         if st.button("🎤 Evaluate Speaking", type="primary"):
 
