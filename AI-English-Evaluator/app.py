@@ -418,13 +418,20 @@ elif menu == "🎤 Speaking Evaluation":
 
         st.audio(uploaded_file)
 
-        with open("audio/temp.wav", "wb") as f:
-            f.write(uploaded_file.getbuffer())
+        import os
+        
+        audio_dir = os.path.join(os.path.dirname(__file__), "audio")
+        os.makedirs(audio_dir, exist_ok=True)
+        
+        audio_path = os.path.join(audio_dir, "temp.wav")
+        
+        with open(audio_path, "wb") as f:
+            f.write(audio_bytes)
 
         if st.button("🎤 Evaluate Speaking", type="primary"):
 
             with st.spinner("🎧 Menganalisis audio..."):
-                result = evaluate_speaking("audio/temp.wav")
+                result = evaluate_speaking(audio_path)
 
             st.success("✅ Evaluasi selesai!")
 
