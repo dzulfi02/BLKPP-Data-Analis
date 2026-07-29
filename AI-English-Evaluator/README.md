@@ -6,7 +6,7 @@ Dashboard berbasis **Streamlit** untuk mengevaluasi kemampuan Bahasa Inggris (Wr
 ![Streamlit](https://img.shields.io/badge/Streamlit-App-red)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-Link Demo: [https://itjvq95ck2nce2mefy5qlb.streamlit.app/]
+🔗 **Live Demo:** [https://itjvq95ck2nce2mefy5qlb.streamlit.app/]
 
 ---
 
